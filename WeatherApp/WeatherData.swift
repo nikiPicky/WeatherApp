@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - WeatherData
 struct WeatherData: Codable {
-    let coord: Coord
+    let coord: Coordinates
     let weather: [Weather]
     let base: String
     let main: Main
@@ -23,14 +23,14 @@ struct Clouds: Codable {
 }
 
 // MARK: - Coord
-struct Coord: Codable {
+struct Coordinates: Codable {
     let lon, lat: Double
 }
 
 // MARK: - Main
 struct Main: Codable {
     let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity, seaLevel, grndLevel: Int
+    let pressure, humidity, seaLevel, grndLevel: Int?
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -66,5 +66,5 @@ struct Weather: Codable {
 struct Wind: Codable {
     let speed: Double
     let deg: Int
-    let gust: Double
+    let gust: Double?
 }
