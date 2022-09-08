@@ -15,6 +15,19 @@ struct WeatherModel {
     let minimumTemperature: Double
     let maximumTemperature: Double
     
+    let wind: Double
+    
+    let sunrise: Int
+    let sunset: Int
+    
+    var sunriseString: String {
+        return timeFromStamp(sunrise)
+    }
+    
+    var sunsetString: String {
+        return timeFromStamp(sunset)
+    }
+    
     var temperatureString: String {
         return String(format: "%.1f", temperature)
     }

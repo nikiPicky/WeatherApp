@@ -28,12 +28,26 @@ class ViewController: UIViewController {
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
     
+    var weatherData: WeatherModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         setupViews()
         
     }
+    
+    @IBAction func showDetailsFunc(_ sender: Any) {
+        let controller = DetailsViewController().instance()
+        
+        controller.weatherData = weatherData
+        
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .flipHorizontal
+        self.navigationController?.present(controller, animated: true)
+    }
+    
+    
 
     func setupViews() {
         locationManager.delegate = self
@@ -53,15 +67,7 @@ class ViewController: UIViewController {
     defaultViews(views: [viewLocation,viewTemperature,viewBottom])
     }
 
-    func defaultViews(views: [UIView]) {
-        
-        for view in views {
-            view.layer.borderColor = UIColor.white.cgColor
-            view.layer.borderWidth = 1
-            
-        }
-        
-    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -101,6 +107,7 @@ extension ViewController: WeatherManagerDelegate {
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async { [self] in
+            self.weatherData = weather
             updateViews(weatherData: weather)
         }
     }
