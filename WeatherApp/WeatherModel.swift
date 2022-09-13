@@ -20,6 +20,8 @@ struct WeatherModel {
     let sunrise: Int
     let sunset: Int
     
+    let feelsLike: Double
+    
     var sunriseString: String {
         return timeFromStamp(sunrise)
     }

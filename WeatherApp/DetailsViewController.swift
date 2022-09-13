@@ -18,12 +18,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var labelSunrise: UILabel!
     @IBOutlet weak var labelSunset: UILabel!
     
+    @IBOutlet weak var labelFeelsLike: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
-        
-        
     }
     
     @IBAction func dismissControllerFunc(_ sender: Any) {
@@ -37,6 +36,8 @@ class DetailsViewController: UIViewController {
         labelWind.text = "\(weatherData?.wind ?? 1.0) km/h"
         labelSunrise.text = weatherData?.sunriseString
         labelSunset.text = weatherData?.sunsetString
+        
+        labelFeelsLike.text = "\(weatherData?.feelsLike ?? 25)°C"
     }
     
     func instance() -> DetailsViewController {
